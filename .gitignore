@@ -1,0 +1,19 @@
+#start_dates in market by YEAR and WEEK
+
+SELECT
+    
+     YEAR(r.start_date),
+     WEEK(r.start_date),
+     COUNT(r.id) AS bookings
+  
+FROM
+     reservation2s r
+     JOIN hostings_summary h ON r.hosting_id = h.hosting_id
+
+WHERE
+     r.status = 1
+
+AND h.market = 'Malmoe'
+AND YEAR(r.start_date) = '2013'
+GROUP BY WEEK(r.start_date)
+;
